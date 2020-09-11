@@ -82,7 +82,7 @@ $(document).ready(function () {
 
   $(function () {
     typed.typed({
-      strings: ["Happiness Balogun.", "Developer.", "Designer.", "Freelancer."],
+      strings: ["Happiness Balogun.", "A Developer.", "A Designer.", "A Freelancer."],
       typeSpeed: 100,
       loop: true,
     });
@@ -154,3 +154,33 @@ $(window).load(function () {
     portfolioIsotope.isotope({ filter: $(this).data("filter") });
   });
 });
+
+// ========================================================================= //
+//  Loader
+// ========================================================================= //
+
+  $(window).on("load", function() {
+    $(".section-loader").fadeOut("slow");
+
+    var $container = $(".portfolioContainer");
+    $container.isotope({
+      filter: "*",
+      animationOptions: {
+        queue: true
+      }
+    });
+
+    $(".portfolio-nav li").click(function() {
+      $(".portfolio-nav .current").removeClass("current");
+      $(this).addClass("current");
+
+      var selector = $(this).attr("data-filter");
+      $container.isotope({
+        filter: selector,
+        animationOptions: {
+          queue: true
+        }
+      });
+      return false;
+    });
+  });
